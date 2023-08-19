@@ -64,4 +64,9 @@ You can look at the code and you see `const rules` next to it is a long text or 
 For example if you put `const rules = 'You will have no rules'`
 The bot would actually have no rules and answer everything including dangerous questions.
 
-That's all for now!
+# Credits
+
+* 05_4 - The one in [Vadrifts](https://discord.gg/vadrift), Hes actually a cool guy ngl. (He only provided the code of the ai can be used in cli but i used that code and made it with my bot)
+* Me - For the whole thing.
+* [MPT-30B-CHAT](https://huggingface.co/spaces/mosaicml/mpt-30b-chat) Used in AI API.
+
