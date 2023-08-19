@@ -4,7 +4,7 @@ Yes, You heard that right.
 
 # Can it be jailbroken?
 
-That's the whole point of it.
+That's the whole point of it, But yes.
 
 # How can I use it?
 
@@ -43,6 +43,7 @@ npm: 8.19.2
 ```
 Maybe if you use the verison i used, it would work.
 You can change your node version using [nvm](https://github.com/nvm-sh/nvm) 
+
 For npm you can use `npm i -g npm@8.19.2` or `npm i npm@8.19.2`
 
 # The Final Step
@@ -53,6 +54,7 @@ Okay, once you're done with everything you will do
 node index.js
 ```
 Now you will just wait until it says "Logged as `your bot name and tag`"
+
 Make sure you put the token!
 
 # Note
