@@ -60,4 +60,4 @@ sed -i "s/const TOKEN = process.env\['TOKEN'\];/const TOKEN = '$bot_token';/" in
 read -p "Your bot ID: " bot_id
 sed -i "s/const PREFIX = '<@1141993367169941504>';/const PREFIX = '<@$bot_id>';/" index.js
 
-echo "Hey there! You have completed it here!!! Use 'node index.js' to begin your bot."
+echo "Hey there! You have completed it here!!! Use 'cd Chatbot-Discord && node index.js' to begin your bot."
