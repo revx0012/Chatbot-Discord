@@ -71,7 +71,7 @@ You can also use cli (chatbot in cli)
 Use our automatic script if youre just lazy
 
 ```bash
-cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/auto.sh && bash auto.sh
+cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/auto.sh && bash auto.sh
 ```
 
 Do all the steps the script asks/says.
@@ -83,7 +83,7 @@ So you want a chatbot in cli and without using discord?
 Sure! First you need to use our auto script by
 
 ```bash
-cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/auto.sh && bash auto.sh
+cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/auto.sh && bash auto.sh
 ```
 
 Once youre done with the script (You don't have to enter your bot token or id just enter it empty if you only want to use cli)
