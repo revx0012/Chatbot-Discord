@@ -92,7 +92,7 @@ Now you got it!
 
 # Credits
 
-* 05_4 - The one in [Vadrifts](https://discord.gg/vadrift), Hes actually a cool guy ngl. (He only provided the code of the ai can be used in cli but i used that code and made it with my bot)
+* 05_4 - The one in [Vadrifts](https://discord.gg/vadrifts), Hes actually a cool guy ngl. (He only provided the code of the ai can be used in cli but i used that code and made it with my bot)
 * Me - For the whole thing.
 * [MPT-30B-CHAT](https://huggingface.co/spaces/mosaicml/mpt-30b-chat) Used in AI API.
 
