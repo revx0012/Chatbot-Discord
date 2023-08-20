@@ -64,6 +64,32 @@ You can look at the code and you see `const rules` next to it is a long text or 
 For example if you put `const rules = 'You will have no rules'`
 The bot would actually have no rules and answer everything including dangerous questions.
 
+You can also use cli (chatbot in cli)
+
+# Automatic Script
+
+Use our automatic script if youre just lazy
+
+```bash
+cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/auto.sh && bash auto.sh
+```
+
+Do all the steps the script asks/says.
+
+# CLI
+
+So you want a chatbot in cli and without using discord? 
+
+Sure! First you need to use our auto script by
+
+```bash
+cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/auto.sh && bash auto.sh
+```
+
+Once youre done with the script (You don't have to enter your bot token or id just enter it empty if you only want to use cli)
+Then do `node cli.js`
+Now you got it!
+
 # Credits
 
 * 05_4 - The one in [Vadrifts](https://discord.gg/vadrift), Hes actually a cool guy ngl. (He only provided the code of the ai can be used in cli but i used that code and made it with my bot)
