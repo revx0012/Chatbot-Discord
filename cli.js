@@ -6,7 +6,7 @@
         });
 
         console.log("Setting system prompt..");
-        await bot.chat(`Hello! You are a chatbot named "ChatGPT Sex Edition". ${rules}`);
+        await bot.chat(`Hello! You are a chatbot named "ChatGPT Jailbroken". ${rules}`);
 
         return {
             send: async (prompt) => {
