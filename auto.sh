@@ -61,3 +61,6 @@ read -p "Your bot ID: " bot_id
 sed -i "s/const PREFIX = '<@1141993367169941504>';/const PREFIX = '<@$bot_id>';/" index.js
 
 echo "Hey there! You have completed it here!!! Use 'cd Chatbot-Discord && node index.js' to begin your bot."
+
+rm -rf auto.sh
+
