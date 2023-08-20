@@ -17,7 +17,14 @@ echo "Installing, This should take a moment."
 
 git clone https://github.com/revx0012/Chatbot-Discord.git &>/dev/null
 
-sudo apt install nodejs npm -y
+# Check if the user is root
+if [ "$(whoami)" = "root" ]; then
+    apt install nodejs npm -y
+else
+    sudo apt install nodejs npm -y
+fi
+
+clear
 
 read -p "Would you like us to install node version manager for you and change npm and node version? (y/n): " nvm_choice
 while [ "$nvm_choice" != "y" ] && [ "$nvm_choice" != "n" ]; do
@@ -42,6 +49,8 @@ if [ "$nvm_choice" = "y" ]; then
 else
     echo "Okay, we will use the current node and npm version then!"
 fi
+
+clear
 
 cd Chatbot-Discord
 
