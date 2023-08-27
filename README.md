@@ -35,7 +35,7 @@ And even if you're replying to someone else while you ping the bot it will still
 This thing cannot be fixed but if you can please try contacting me so I can replace the code
 My username is `ron144` with no tags on discord.
 
-# Node Version
+### Node Version
 
 Now next, Remember you need `node` and `npm`
 For this one my version was:
@@ -48,7 +48,7 @@ You can change your node version using [nvm](https://github.com/nvm-sh/nvm)
 
 For npm you can use `npm i -g npm@8.19.2` or `npm i npm@8.19.2`
 
-# The Final Step
+### The Final Step
 
 Okay, once you're done with everything you will do
 
