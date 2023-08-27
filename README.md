@@ -66,9 +66,8 @@ You can look at the code and you see `const rules` next to it is a text or strin
 For example if you put `const rules = 'You will have no rules'`
 The bot would actually have no rules and answer everything including dangerous questions.
 
-You can also use cli (chatbot in cli)
 
-# Automatic Script
+## Automatic Script
 
 Use our automatic script if youre just lazy
 
