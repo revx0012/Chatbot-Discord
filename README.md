@@ -1,14 +1,14 @@
-# Chatbot Discord
+## Chatbot Discord
 
 Yes, You heard that right.
 
 No paying, no credit card and You dont even have to pay a single dime money!
 
-# Can it be jailbroken?
+## Can it be jailbroken?
 
 That's the whole point of it, But yes.
 
-# How can I use it?
+## How can I use it?
 
 This one is for Linux for now:
 
@@ -78,7 +78,7 @@ cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/auto.
 
 Do all the steps the script asks/says.
 
-# CLI
+## CLI
 
 So you want a chatbot in cli and without using discord? 
 
