@@ -81,11 +81,7 @@ Do all the steps the script asks/says.
 
 So you want a chatbot in cli and without using discord? 
 
-Sure! First you need to use our auto script by
-
-```bash
-cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/auto.sh && bash auto.sh
-```
+Sure! First you need to use our auto script from [here](https://github.com/revx0012/Chatbot-Discord/tree/main#automatic-script)
 
 Once youre done with the script (You don't have to enter your bot token or id just enter it empty if you only want to use cli)
 Then do `node cli.js`
