@@ -98,6 +98,8 @@ wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/autoweb.sh 
 ```
 This one should setup everything you need (Kinda same thing as auto.sh but i removed the token one)
 
+Once you run it, it should be hosted in [localhost:3000](http://localhost:300)
+
 # Credits
 
 * [05_4](https://github.com/05-4) - The one in [Vadrifts](https://discord.gg/vadrifts), Hes actually a cool guy ngl. (He only provided the code of the ai can be used in cli but i used that code and made it with my bot)
