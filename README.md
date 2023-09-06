@@ -4,11 +4,13 @@ Yes, You heard that right.
 
 No paying, no credit card and You dont even have to pay a single dime money!
 
+I'm not responsible for any damages and danger.
+
 ## Can it be jailbroken?
 
 That's the whole point of it, But yes.
 
-## How can I use it?
+## Getting Started
 
 This one is for Linux for now:
 
