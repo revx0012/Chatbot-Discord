@@ -98,7 +98,7 @@ wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/autoweb.sh 
 ```
 This one should setup everything you need (Kinda same thing as auto.sh but i removed the token one)
 
-Once you run it, it should be hosted in [localhost:3000](http://localhost:300)
+Once you run it, it should be hosted in [localhost:3000](http://localhost:3000)
 
 # Credits
 
