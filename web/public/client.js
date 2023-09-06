@@ -4,9 +4,10 @@ const sendButton = document.getElementById('send-button');
 const clearButton = document.getElementById('clear-button');
 
 const addMessage = (sender, message) => {
-    const messageDiv = document.createElement('div');
-    messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
-    chatBox.appendChild(messageDiv);
+        const messageDiv = document.createElement('div');
+        const formattedMessage = message.replace(/\n/g, '<br>'); // Replace newline characters with <br> tags
+        messageDiv.innerHTML = `<strong>${sender}:</strong><br>${formattedMessage}`;
+        chatBox.appendChild(messageDiv);
 };
 
 const clearChat = () => {
