@@ -18,7 +18,7 @@ const chatWithBot = async () => {
     const userMessage = userInput.value;
     if (!userMessage) return;
 
-    addMessage('You:', userMessage);
+    addMessage('You', userMessage);
     userInput.value = '';
 
     const response = await fetch('/chat', {
@@ -31,9 +31,9 @@ const chatWithBot = async () => {
 
     if (response.ok) {
         const botResponse = await response.json();
-        addMessage('Bot:', botResponse);
+        addMessage('Bot', botResponse);
     } else {
-        addMessage('Bot:', 'Error occurred while processing your request.');
+        addMessage('Bot', 'Error occurred while processing your request.');
     }
 };
 
