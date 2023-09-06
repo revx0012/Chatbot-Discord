@@ -4,10 +4,16 @@ const sendButton = document.getElementById('send-button');
 const clearButton = document.getElementById('clear-button');
 
 const addMessage = (sender, message) => {
-        const messageDiv = document.createElement('div');
-        const formattedMessage = message.replace(/\n/g, '<br>'); // Replace newline characters with <br> tags
+    const messageDiv = document.createElement('div');
+    if (sender === 'Bot') {
+        // Apply line breaks to AI responses
+        const formattedMessage = message.replace(/\n/g, '<br>');
         messageDiv.innerHTML = `<strong>${sender}:</strong><br>${formattedMessage}`;
-        chatBox.appendChild(messageDiv);
+    } else {
+        // Keep user input as-is
+        messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    }
+    chatBox.appendChild(messageDiv);
 };
 
 const clearChat = () => {
