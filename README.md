@@ -101,4 +101,5 @@ This one should setup everything you need (Kinda same thing as auto.sh but i rem
 * [05_4](https://github.com/05-4) - The one in [Vadrifts](https://discord.gg/vadrifts), Hes actually a cool guy ngl. (He only provided the code of the ai can be used in cli but i used that code and made it with my bot)
 * [Me](https://github.com/revx0012) - For the whole thing.
 * [MPT-30B-CHAT](https://huggingface.co/spaces/mosaicml/mpt-30b-chat) Used in AI API.
+* [MIT License](https://opensource.org/license/mit/) For the License.
 
