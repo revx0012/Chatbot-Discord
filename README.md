@@ -4,7 +4,7 @@ Yes, You heard that right.
 
 No paying, no credit card and You dont even have to pay a single dime money!
 
-I'm not responsible for any damages and danger.
+I'm not responsible for any damages or danger.
 
 ## Can it be jailbroken?
 
