@@ -56,6 +56,7 @@ client.on('messageCreate', async (message) => {
                 const channelId = splitMessage[2].slice(2, -1);
 
                 if (!channelId) {
+                    message.channel.sendTyping();
                     message.channel.send('Please specify a valid channel.');
                     return;
                 }
@@ -69,7 +70,8 @@ client.on('messageCreate', async (message) => {
         }
     } else if (activeChats.has(message.channel.id)) {
         // The bot will only respond in the specified channel
-        const bot = await createBot();
+        const bot = await createBot(rules);
+        message.channel.sendTyping();
         const response = await bot.send(message.content);
         message.channel.send(`[BOT]: ${response}`);
     }
