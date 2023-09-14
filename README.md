@@ -30,12 +30,11 @@ Now you need to have `nano` installed by using `sudo apt-get install nano -y` or
 Now once you're all done, you will do `nano index.js` Then you will edit the prefix and token also
 
 On the prefix you might see `<@ID>` Well because that's my bot id so make your own bot by discord dev website then get your bot id and replace it
-so you can use the `@`, For example: @Chatbot Hello!
+so you can use the `@` just for the command chatbot.
 
-But there's a problem, When you ping the bot and ask and even if you didn't reply or ping it will still answer your question so you would have to put your own chatbot in a specific channel to use from not all channels
-And even if you're replying to someone else while you ping the bot it will still respond to you 
-This thing cannot be fixed but if you can please try contacting me so I can replace the code
-My username is `ron144` with no tags on discord.
+So it has a command which is `chatbot` it setups a channel which your chatbot can only answer respond there instead of other channels, to use it you can do `<@ID> chatbot #channel` You can replace the id in <@ID> with your bot id or just use your bot name like if it is "Chatbot" you can use `@Chatbot chatbot #channel` replace the #channel with the channel where would the bot only respond in.
+Once you setup the channel you go to the channel you specified and send any messages/question such as "What's your name?" without the prefix it should work.
+But when you restart the bot you need to specify the channel again which is unfortunate.
 
 ### Node Version
 
