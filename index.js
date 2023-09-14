@@ -41,27 +41,32 @@ async function createBot(rules) {
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
-    // Check if the message starts with the bot prefix and "chatbot" command
-    if (message.content.toLowerCase().startsWith(PREFIX.toLowerCase())) {
-        const command = message.content.toLowerCase().split(' ')[1];
+    const splitMessage = message.content.toLowerCase().split(' ');
+
+    // Check if the message starts with the bot prefix
+    if (splitMessage[0] === PREFIX.toLowerCase()) {
+        const command = splitMessage[1];
+
         if (command === 'chatbot') {
             // The user wants to set up the chatbot for this channel
-            const channelId = message.mentions.channels.first().id;
+            if (splitMessage[2] && splitMessage[2].startsWith('<#') && splitMessage[2].endsWith('>')) {
+                const channelId = splitMessage[2].slice(2, -1);
 
-            if (!channelId) {
-                message.channel.send('Please specify a valid channel.');
-                return;
+                if (!channelId) {
+                    message.channel.send('Please specify a valid channel.');
+                    return;
+                }
+
+                // Save the channel ID where the bot should respond
+                activeChats.set(channelId, message.author.id);
+                message.channel.send(`Chatbot has been set up for this channel: <#${channelId}>`);
+            } else {
+                message.channel.send('Please specify a valid channel to set up the chatbot.');
             }
-
-            // Save the channel ID where the bot should respond
-            activeChats.set(channelId, message.author.id);
-            message.channel.send(`Chatbot has been set up for this channel: <#${channelId}>`);
-        } else {
-            message.channel.send('Invalid command. Use `<@1141993367169941504> chatbot #channel` to set up the chatbot for a specific channel.');
         }
     } else if (activeChats.has(message.channel.id)) {
         // The bot will only respond in the specified channel
-        const bot = activeChats.get(message.channel.id);
+        const bot = await createBot();
         const response = await bot.send(message.content);
         message.channel.send(`[BOT]: ${response}`);
     }
