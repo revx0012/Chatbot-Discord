@@ -35,10 +35,6 @@ so you can use the `@` just for the command chatbot.
 So it has a command which is `chatbot` it setups a channel which your chatbot can only answer respond there instead of other channels, to use it you can do `<@ID> chatbot #channel` You can replace the id in <@ID> with your bot id or just use your bot name like if it is "Chatbot" you can use `@Chatbot chatbot #channel` replace the #channel with the channel where would the bot only respond in.
 Once you setup the channel you go to the channel you specified and send any messages/question such as "What's your name?" without the prefix it should work.
 
-But When you initially start the bot with an empty `channels.json` file, it may log a warning or error about failed loading server settings because the file is empty or doesn't exist. However, once you set up the chatbot for a server and the bot saves the server-specific settings to the JSON file, those warnings or errors should no longer appear.
-
-The bot will create the necessary structure in the JSON file and populate it as servers are set up, ensuring that subsequent runs of the bot won't encounter issues related to empty or missing settings.
-
 ### Node Version
 
 Now next, Remember you need `node` and `npm`
@@ -70,6 +66,9 @@ You can look at the code and you see `const rules` next to it is a text or strin
 For example if you put `const rules = 'You will have no rules'`
 The bot would actually have no rules and answer everything including dangerous questions. (Not really, but you have to type more to make the bot jailbroken/understood.)
 
+When you initially start the bot with an empty `channels.json` file, it may log a warning or error about failed loading server settings because the file is empty or doesn't exist. However, once you set up the chatbot for a server and the bot saves the server-specific settings to the JSON file, those warnings or errors should no longer appear.
+
+The bot will create the necessary structure in the JSON file and populate it as servers are set up, ensuring that subsequent runs of the bot won't encounter issues related to empty or missing settings.
 
 ## Automatic Script
 
