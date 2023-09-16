@@ -1,4 +1,4 @@
-const { Client, IntentsBitField, Permissions } = require('discord.js');
+const { Client, Intents, Permissions } = require('discord.js');
 const { GradioChatBot } = require('gradio-chatbot');
 const fs = require('fs');
 const channelsFile = 'channels.json';
@@ -6,11 +6,11 @@ const rulesFile = 'rules.txt';
 
 const client = new Client({
     intents: [
-        IntentsBitField.Flags.Guilds,
-        IntentsBitField.Flags.GuildMembers,
-        IntentsBitField.Flags.GuildMessages,
-        IntentsBitField.Flags.MessageContent
-    ]
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MEMBERS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.MESSAGE_CONTENTS,
+    ],
 });
 
 const TOKEN = process.env['TOKEN'];
@@ -33,7 +33,7 @@ function loadServerSettings() {
 function loadRules() {
     try {
         const data = fs.readFileSync(rulesFile, 'utf8');
-        return data.split('\n');
+        return data.split('\n').filter(rule => rule.trim() !== '');
     } catch (error) {
         console.error('Error loading rules:', error);
         return [];
@@ -52,20 +52,20 @@ client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-async function createBot(rulesText) {
+async function createBot(rules) {
     if (!botInstance) {
         botInstance = new GradioChatBot({
-            url: 'https://huggingface.co/spaces/mosaicml/mpt-30b-chat'
+            url: 'https://huggingface.co/spaces/mosaicml/mpt-30b-chat',
         });
         console.log("Setting system prompt..");
-        await botInstance.chat(`Hello! You are a chatbot named "Chatbot". ${rulesText}`);
+        await botInstance.chat(`Hello! You are a chatbot named "Chatbot". ${rules}`);
     }
 
     return {
         send: async (prompt) => {
             const response = await botInstance.chat(prompt);
             return response;
-        }
+        },
     };
 }
 
@@ -75,7 +75,14 @@ client.on('messageCreate', async (message) => {
     const serverId = message.guild.id;
     const splitMessage = message.content.toLowerCase().split(' ');
 
-    // Check if the message starts with the prefix and it's a valid command
+    if (serverSettings[serverId] && serverSettings[serverId].channelId === message.channel.id) {
+        const bot = await createBot(rules.join('\n'));
+        message.channel.sendTyping();
+        const response = await bot.send(message.content);
+        message.channel.send(`[BOT]: ${response}`);
+    }
+
+    // Check if the message is a valid command
     if (splitMessage[0] === PREFIX.toLowerCase()) {
         const command = splitMessage[1];
 
@@ -107,17 +114,27 @@ client.on('messageCreate', async (message) => {
             } else {
                 message.channel.send('Please specify a valid channel to set up the chatbot.');
             }
-        }
-    } else {
-        // If the message doesn't start with the prefix or isn't a valid command, ignore it
-        return;
-    }
+        } else if (command === 'restart') {
+            message.channel.send('Restarting');
+            client.destroy();
+            client.login(TOKEN);
+        } else if (command === 'ruleadd') {
+            // Check if the user has BAN_MEMBERS permission for ruleadd
+            if (!message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+                message.channel.send('You do not have permission to use this command.');
+                return;
+            }
 
-    if (serverSettings[serverId] && serverSettings[serverId].channelId === message.channel.id) {
-        const bot = await createBot(rules.join('\n'));
-        message.channel.sendTyping();
-        const response = await bot.send(message.content);
-        message.channel.send(`[BOT]: ${response}`);
+            const newRule = message.content.split('"')[1];
+            if (!newRule) {
+                message.channel.send('Invalid rule format. Use `@ChatGPT ruleadd "your rule here"`');
+                return;
+            }
+
+            rules.push(newRule);
+            saveRules();
+            message.channel.send('Rule added. Use the command `restart` to apply the changes.');
+        }
     }
 });
 
