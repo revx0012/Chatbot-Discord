@@ -75,7 +75,7 @@ client.on('messageCreate', async (message) => {
     const serverId = message.guild.id;
     const splitMessage = message.content.toLowerCase().split(' ');
 
-    // Check if the message starts with the prefix
+    // Check if the message starts with the prefix and it's a valid command
     if (splitMessage[0] === PREFIX.toLowerCase()) {
         const command = splitMessage[1];
 
@@ -108,8 +108,8 @@ client.on('messageCreate', async (message) => {
                 message.channel.send('Please specify a valid channel to set up the chatbot.');
             }
         }
-    } else if (splitMessage[0] === PREFIX.toLowerCase() && !['restart', 'ruleadd', 'chatbot'].includes(splitMessage[1])) {
-        // Ignore messages with the prefix but not followed by a valid command
+    } else {
+        // If the message doesn't start with the prefix or isn't a valid command, ignore it
         return;
     }
 
