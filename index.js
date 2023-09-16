@@ -1,1 +1,1 @@
-It's ruined, work in progress for fix.
+console.log("It's ruined, work in progress for fix.")
