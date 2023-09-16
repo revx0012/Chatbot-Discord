@@ -83,7 +83,7 @@ The bot will create the necessary structure in the JSON file and populate it as 
 
 - `restart`: Self-explanatory
 
-- `ruleadd`: Can't explain much, but you can do `@Yourbot ruleadd "your rule here"` and it will be added to rules.txt
+- `ruleadd`: Can't explain much, but you can do `@Yourbot ruleadd your rule here` and it will be added to rules.txt
 
 
 
