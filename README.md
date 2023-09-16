@@ -70,6 +70,15 @@ When you initially start the bot with an empty `channels.json` file, it may log 
 
 The bot will create the necessary structure in the JSON file and populate it as servers are set up, ensuring that subsequent runs of the bot won't encounter issues related to empty or missing settings.
 
+
+## Commands
+`chatbot` - Use this command to set up the channel where the bot should respond. It ensures the bot interacts only in the designated channel within the server.
+
+`restart` - This command restarts the bot. It can be helpful when you need to refresh the bot's functionality.
+
+`ruleadd` - Add a new rule using this command. Each rule should be enclosed in double quotes, like "Be helpful". Rules help define how the bot behaves in interactions.
+
+
 ## Automatic Script
 
 Use our automatic script if youre just lazy
