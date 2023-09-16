@@ -32,8 +32,6 @@ Now once you're all done, you will do `nano index.js` Then you will edit the pre
 On the prefix you might see `<@ID>` Well because that's my bot id so make your own bot by discord dev website then get your bot id and replace it
 so you can use the `@` just for the command chatbot.
 
-So it has a command which is `chatbot` it setups a channel which your chatbot can only answer respond there instead of other channels, to use it you can do `<@ID> chatbot #channel` You can replace the id in <@ID> with your bot id or just use your bot name like if it is "Chatbot" you can use `@Chatbot chatbot #channel` replace the #channel with the channel where would the bot only respond in.
-Once you setup the channel you go to the channel you specified and send any messages/question such as "What's your name?" without the prefix it should work.
 
 ### Node Version
 
@@ -72,11 +70,20 @@ The bot will create the necessary structure in the JSON file and populate it as 
 
 
 ## Commands
-`chatbot` - Use this command to set up the channel where the bot should respond. It ensures the bot interacts only in the designated channel within the server.
+- `chatbot` - Use this command to set up the channel where the bot should respond. It ensures the bot interacts only in the designated channel within the server.
 
-`restart` - This command restarts the bot. It can be helpful when you need to refresh the bot's functionality.
+- `restart` - This command restarts the bot. It can be helpful when you need to refresh the bot's functionality.
 
-`ruleadd` - Add a new rule using this command. Each rule should be enclosed in double quotes, like "Be helpful". Rules help define how the bot behaves in interactions.
+- `ruleadd` - Add a new rule using this command. Each rule should be enclosed in double quotes, like "Be helpful". Rules help define how the bot behaves in interactions.
+
+## Commands Explained
+- chatbot: a command which is `chatbot` it setups a channel which your chatbot can only answer respond there instead of other channels, to use it you can do `<@ID> chatbot #channel` You can replace the id in <@ID> with your bot id or just use your bot name like if it is "Chatbot" you can use `@Chatbot chatbot #channel` replace the #channel with the channel where would the bot only respond in.
+Once you setup the channel you go to the channel you specified and send any messages/question such as "What's your name?" without the prefix it should work.
+
+- restart: Self-explanatory
+
+- ruleadd: Can't explain much, but you can do `@Yourbot ruleadd "your rule here"`
+
 
 
 ## Automatic Script
