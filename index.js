@@ -75,7 +75,7 @@ client.on('messageCreate', async (message) => {
     const serverId = message.guild.id;
     const splitMessage = message.content.toLowerCase().split(' ');
 
-    if (activeChats.has(message.channel.id) || message.channel.id === serverSettings[serverId]?.channelId) {
+    if (message.channel.id === serverSettings[serverId]?.channelId) {
         // The bot will respond without prefix in the specified channel
         const bot = await createBot(rules);
         message.channel.sendTyping();
