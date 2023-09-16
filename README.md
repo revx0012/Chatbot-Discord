@@ -77,12 +77,12 @@ The bot will create the necessary structure in the JSON file and populate it as 
 - `ruleadd` - Add a new rule using this command. Each rule should be enclosed in double quotes, like "Be helpful". Rules help define how the bot behaves in interactions.
 
 ## Commands Explained
-- chatbot: a command which is `chatbot` it setups a channel which your chatbot can only answer respond there instead of other channels, to use it you can do `<@ID> chatbot #channel` You can replace the id in <@ID> with your bot id or just use your bot name like if it is "Chatbot" you can use `@Chatbot chatbot #channel` replace the #channel with the channel where would the bot only respond in.
-Once you setup the channel you go to the channel you specified and send any messages/question such as "What's your name?" without the prefix it should work.
+- `chatbot`: Use the chatbot command to set up a dedicated channel where your chatbot will exclusively respond. You can initiate it by typing `<@ID> chatbot #channel`, replacing <@ID> with your bot's mention or name (e.g., `@Chatbot chatbot #channel`).
+- After configuring the channel, navigate to the specified channel and send your messages or questions without the prefix. For example, just type "What's your name?" The bot will respond accordingly in that designated channel, ensuring organized and focused interactions.
 
-- restart: Self-explanatory
+- `restart`: Self-explanatory
 
-- ruleadd: Can't explain much, but you can do `@Yourbot ruleadd "your rule here"`
+- `ruleadd`: Can't explain much, but you can do `@Yourbot ruleadd "your rule here"`
 
 
 
