@@ -75,18 +75,17 @@ client.on('messageCreate', async (message) => {
     const serverId = message.guild.id;
     const splitMessage = message.content.toLowerCase().split(' ');
 
-    // Check if the message starts with one of the allowed commands
-    const allowedCommands = ['restart', 'chatbot', 'ruleadd']; // Add other allowed commands here
-    if (allowedCommands.includes(splitMessage[0])) {
-        // Check if the user has BAN_MEMBERS permission for commands
-        if (!message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
-            message.channel.send('You do not have permission to use this command.');
-            return;
-        }
-    }
-
+    // Check if the message starts with the prefix
     if (splitMessage[0] === PREFIX.toLowerCase()) {
         const command = splitMessage[1];
+
+        // Check if the user has BAN_MEMBERS permission for commands
+        if (command === 'restart' || command === 'ruleadd' || command === 'chatbot') {
+            if (!message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+                message.channel.send('You do not have permission to use this command.');
+                return;
+            }
+        }
 
         if (command === 'chatbot') {
             // The user wants to set up the chatbot for this channel
@@ -108,19 +107,10 @@ client.on('messageCreate', async (message) => {
             } else {
                 message.channel.send('Please specify a valid channel to set up the chatbot.');
             }
-        } else if (command === 'restart') {
-            botInstance = null;
-            message.channel.send('Bot has been restarted.');
-        } else if (command === 'ruleadd') {
-            if (splitMessage.length > 2) {
-                const newRule = message.content.substring(message.content.indexOf('"') + 1, message.content.lastIndexOf('"'));
-                rules.push(`@ChatGPT ${newRule}`);
-                saveRules();
-                message.channel.send(`Rule added: "${newRule}"\nUse the command \`restart\` to apply changes.`);
-            } else {
-                message.channel.send('Please provide a valid rule to add.');
-            }
         }
+    } else if (splitMessage[0] === PREFIX.toLowerCase() && !['restart', 'ruleadd', 'chatbot'].includes(splitMessage[1])) {
+        // Ignore messages with the prefix but not followed by a valid command
+        return;
     }
 
     if (serverSettings[serverId] && serverSettings[serverId].channelId === message.channel.id) {
@@ -130,5 +120,6 @@ client.on('messageCreate', async (message) => {
         message.channel.send(`[BOT]: ${response}`);
     }
 });
+
 
 client.login(TOKEN);
