@@ -1,4 +1,4 @@
-const { Client, Intents, Permissions } = require('discord.js');
+const { Client, Intents } = require('discord.js');
 const { GradioChatBot } = require('gradio-chatbot');
 const fs = require('fs');
 const channelsFile = 'channels.json';
