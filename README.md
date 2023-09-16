@@ -79,7 +79,7 @@ The bot will create the necessary structure in the JSON file and populate it as 
 
 ## Commands Explained
 - `chatbot`: Use the chatbot command to set up a dedicated channel where your chatbot will exclusively respond. You can initiate it by typing `<@ID> chatbot #channel`, replacing <@ID> with your bot's mention or name (e.g., `@Chatbot chatbot #channel`).
-- After configuring the channel, navigate to the specified channel and send your messages or questions without the prefix. For example, just type "What's your name?" The bot will respond accordingly in that designated channel, ensuring organized and focused interactions.
+- After configuring the channel, navigate to the specified channel and send your messages or questions with or without the prefix. For example, just type "What's your name?" or with prefix at the start, The bot will respond accordingly in that designated channel, ensuring organized and focused interactions.
 
 - `restart`: Self-explanatory
 
