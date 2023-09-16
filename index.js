@@ -126,7 +126,7 @@ client.on('messageCreate', async (message) => {
 
             const newRule = message.content.split('"')[1];
             if (!newRule) {
-                message.channel.send('Invalid rule format. Use `@ChatGPT ruleadd "your rule here"`');
+                message.channel.send(`Invalid rule format. Use "${PREFIX} ruleadd your rule here"`);
                 return;
             }
 
