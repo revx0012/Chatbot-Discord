@@ -87,7 +87,7 @@ client.on('messageCreate', async (message) => {
 
         // Check if the user has BAN_MEMBERS permission for commands
         if (command === 'restart' || command === 'ruleadd' || command === 'chatbot') {
-            if (!message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+            if (!message.member.permissions.has(Permissions.Flags.Ban_Members)) {
                 message.channel.send('You do not have permission to use this command.');
                 return;
             }
@@ -119,7 +119,7 @@ client.on('messageCreate', async (message) => {
             client.login(TOKEN);
         } else if (command === 'ruleadd') {
             // Check if the user has BAN_MEMBERS permission for ruleadd
-            if (!message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+            if (!message.member.permissions.has(Permissions.Flags.Ban_Members)) {
                 message.channel.send('You do not have permission to use this command.');
                 return;
             }
