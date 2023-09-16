@@ -6,11 +6,11 @@ const rulesFile = 'rules.txt';
 
 const client = new Client({
     intents: [
-        Intents.Flags.GUILDS,
-        Intents.Flags.GUILD_MEMBERS,
-        Intents.Flags.GUILD_MESSAGES,
-        Intents.Flags.MESSAGE_CONTENTS,
-    ],
+        IntentsBitField.Flags.Guilds,
+        IntentsBitField.Flags.GuildMembers,
+        IntentsBitField.Flags.GuildMessages,
+        IntentsBitField.Flags.MessageContent
+    ]
 });
 
 const TOKEN = process.env['TOKEN'];
