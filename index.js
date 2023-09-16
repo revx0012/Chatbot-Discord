@@ -6,10 +6,10 @@ const rulesFile = 'rules.txt';
 
 const client = new Client({
     intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MEMBERS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.MESSAGE_CONTENTS,
+        Intents.Flags.GUILDS,
+        Intents.Flags.GUILD_MEMBERS,
+        Intents.Flags.GUILD_MESSAGES,
+        Intents.Flags.MESSAGE_CONTENTS,
     ],
 });
 
