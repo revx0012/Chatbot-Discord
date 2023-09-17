@@ -28,6 +28,11 @@ function loadServerSettings() {
     }
 }
 
+client.once('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+});
+
+
 function saveServerSettings() {
     fs.writeFileSync(channelsFile, JSON.stringify(serverSettings, null, 4), 'utf8');
 }
