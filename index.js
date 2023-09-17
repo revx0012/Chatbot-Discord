@@ -91,10 +91,10 @@ client.on('messageCreate', async (message) => {
             }
 
             
-            const ruleToAdd = message.content.slice(command.length + PREFIX.length + 1); // Extract the rule text
+            const newRule = message.content.slice(command.length + PREFIX.length + 1); // Extract the rule text
 
             // Check if the ruleToAdd is not empty
-            if (ruleToAdd) {
+            if (newRule) {
                 // Append the new rule to rules.txt
                 fs.appendFileSync(rulesFile, `\n${newRule}`, 'utf8');
                 message.channel.send('Rule added. Use the command `restart` to restart manually.');
@@ -102,15 +102,13 @@ client.on('messageCreate', async (message) => {
                 message.channel.send('Please specify a rule to add.');
             }
         }
-                            } else if (serverSettings[serverId] && message.channel.id === serverSettings[serverId].channelId) {
-                // The bot will only respond in the specified channel
-                const bot = await createBot(serverSettings[serverId].rules);
-                message.channel.sendTyping();
-                const response = await bot.send(message.content);
-                message.channel.send(`[BOT]: ${response}`);
-            }
-
-
+    } else if (serverSettings[serverId] && message.channel.id === serverSettings[serverId].channelId) {
+        // The bot will only respond in the specified channel
+        const bot = await createBot(rules);
+        message.channel.sendTyping();
+        const response = await bot.send(message.content);
+        message.channel.send(`[BOT]: ${response}`);
+    }
 });
 
 client.login(TOKEN);
