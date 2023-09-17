@@ -69,8 +69,8 @@ client.on('messageCreate', async (message) => {
 
     if (command === 'restart' && message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
         message.reply('Restarting...');
-        // Add restart logic here if needed
-        // process.exit(); // Uncomment this if you want to restart the bot
+        process.exit();
+        client.login(TOKEN);
         return;
     }
 
