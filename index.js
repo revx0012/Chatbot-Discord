@@ -17,6 +17,7 @@ const TOKEN = process.env['TOKEN'];
 const PREFIX = '<@1141993367169941504>';
 
 let serverSettings = loadServerSettings();
+let botInstance = null;
 
 function loadServerSettings() {
     try {
@@ -26,6 +27,10 @@ function loadServerSettings() {
         console.error('Error loading server settings:', error);
         return {};
     }
+}
+
+function saveServerSettings() {
+    fs.writeFileSync(channelsFile, JSON.stringify(serverSettings, null, 4), 'utf8');
 }
 
 client.once('ready', () => {
@@ -41,62 +46,43 @@ client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
     const rules = fs.readFileSync(rulesFile, 'utf8'); // Read rules from rules.txt
-    const serverId = message.guild.id;
 
-    if (serverSettings[serverId] && message.channel.id === serverSettings[serverId].channelId) {
-        // Handle AI responses in the specified channel without a restart
+    const serverId = message.guild.id;
+    const channelId = message.channel.id;
+
+    // Check if the message is in the specified channel
+    if (serverSettings[serverId] && channelId === serverSettings[serverId].channelId) {
         const bot = await createBot(rules);
         message.channel.sendTyping();
         const response = await bot.send(message.content);
-        message.channel.send(`[BOT]: ${response}`);
+        message.reply(`[BOT]: ${response}`);
         return; // Exit here to prevent command processing
     }
 
     const splitMessage = message.content.toLowerCase().split(' ');
+    const command = splitMessage[0];
 
-    if (splitMessage[0] === PREFIX.toLowerCase()) {
-        const command = splitMessage[1];
+    if (command === `chatbot` && !message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+        message.reply('You do not have permission to use this command.');
+        return;
+    }
 
-        if (command === 'chatbot' && !message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
-            message.channel.send('You do not have permission to use this command.');
-            return;
+    if (command === 'restart' && message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+        message.reply('Restarting...');
+        // Add restart logic here if needed
+        // process.exit(); // Uncomment this if you want to restart the bot
+        return;
+    }
+
+    if (command === `addrule` && message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+        const newRule = message.content.slice(`${PREFIX}addrule`.length).trim();
+        if (newRule) {
+            fs.appendFileSync(rulesFile, `\n${newRule}`, 'utf8');
+            message.reply('Rule added.');
+        } else {
+            message.reply('Please specify a rule to add.');
         }
-
-        // The user wants to set up the chatbot for this channel
-        if (command === 'chatbot') {
-            if (splitMessage[2] && splitMessage[2].startsWith('<#') && splitMessage[2].endsWith('>')) {
-                const channelId = splitMessage[2].slice(2, -1);
-
-                if (!channelId) {
-                    message.channel.sendTyping();
-                    message.channel.send('Please specify a valid channel.');
-                    return;
-                }
-
-                serverSettings[serverId] = {
-                    channelId: channelId,
-                };
-
-                saveServerSettings();
-                message.channel.send(`Chatbot has been set up for this channel: <#${channelId}>`);
-            } else {
-                message.channel.send('Please specify a valid channel to set up the chatbot.');
-            }
-        } else if (command === 'restart' && message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
-            message.channel.send('Restarting...');
-            process.exit();
-        } else if (command === 'ruleadd' && message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
-            const newRule = message.content.slice(command.length + PREFIX.length + 1); // Extract the rule text
-
-            // Check if the ruleToAdd is not empty
-            if (newRule) {
-                // Append the new rule to rules.txt
-                fs.appendFileSync(rulesFile, `\n${newRule}`, 'utf8');
-                message.channel.send('Rule added. Use the command `restart` to restart manually.');
-            } else {
-                message.channel.send('Please specify a rule to add.');
-            }
-        }
+        return;
     }
 });
 
