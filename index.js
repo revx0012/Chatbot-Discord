@@ -32,10 +32,6 @@ function saveServerSettings() {
     fs.writeFileSync(channelsFile, JSON.stringify(serverSettings, null, 4), 'utf8');
 }
 
-client.once('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-});
-
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
@@ -43,9 +39,18 @@ client.on('messageCreate', async (message) => {
 
     const serverId = message.guild.id;
 
+    if (serverSettings[serverId] && message.channel.id === serverSettings[serverId].channelId) {
+        // Handle AI responses in the specified channel without a restart
+        const bot = await createBot(rules);
+        message.channel.sendTyping();
+        const response = await bot.send(message.content);
+        message.channel.send(`[BOT]: ${response}`);
+        return; // Exit here to prevent command processing
+    }
+
     const splitMessage = message.content.toLowerCase().split(' ');
 
-    if (splitMessage[0] === PREFIX.toLowerCase() && message.channel.id !== serverSettings[serverId]?.channelId) {
+    if (splitMessage[0] === PREFIX.toLowerCase()) {
         const command = splitMessage[1];
 
         if (command === 'chatbot' && !message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
