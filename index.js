@@ -102,13 +102,14 @@ client.on('messageCreate', async (message) => {
                 message.channel.send('Please specify a rule to add.');
             }
         }
-                } else if (serverSettings[serverId] && message.channel.id === serverSettings[serverId].channelId) {
+                            } else if (serverSettings[serverId] && message.channel.id === serverSettings[serverId].channelId) {
                 // The bot will only respond in the specified channel
                 const bot = await createBot(serverSettings[serverId].rules);
                 message.channel.sendTyping();
                 const response = await bot.send(message.content);
                 message.channel.send(`[BOT]: ${response}`);
             }
+
 
 });
 
