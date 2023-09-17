@@ -78,7 +78,7 @@ The bot will create the necessary structure in the JSON file and populate it as 
 - `ruleadd` - Add a new rule using this command. Each rule should be enclosed in double quotes, like "Be helpful". Rules help define how the bot behaves in interactions.
 
 ## Commands Explained
-- `chatbot`: Use the chatbot command to set up a dedicated channel where your chatbot will exclusively respond. You can initiate it by typing `<@ID> chatbot #channel`, replacing <@ID> with your bot's mention or name (e.g., `@Chatbot chatbot #channel`).
+- `chatbot`: Use the chatbot command to set up a dedicated channel where your chatbot will exclusively respond. You can initiate it by typing `@Yourbot chatbot #channel`, replacing @YourBot with your bot's mention or name (e.g., `@Chatbot chatbot #channel`).
 - After configuring the channel, navigate to the specified channel and send your messages or questions with or without the prefix. For example, just type "What's your name?" or with prefix at the start, The bot will respond accordingly in that designated channel, ensuring organized and focused interactions.
 
 - `restart`: Self-explanatory
@@ -99,9 +99,7 @@ Do all the steps the script asks/says.
 
 ## CLI
 
-So you want a chatbot in cli and without using discord? 
-
-Sure! First you need to use our auto script from [here](https://github.com/revx0012/Chatbot-Discord/tree/main#automatic-script)
+A chatbot in cli (in shell command line), Then you can use the script [here](https://github.com/revx0012/Chatbot-Discord/tree/main#automatic-script)
 
 Once youre done with the script (You don't have to enter your bot token or id just enter it empty if you only want to use cli)
 Then do `node cli.js`
