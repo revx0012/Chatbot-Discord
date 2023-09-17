@@ -73,12 +73,12 @@ client.on('messageCreate', async (message) => {
             } else {
                 message.channel.send('Please specify a valid channel to set up the chatbot.');
             }
-        } else if (command === 'restart' && !message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+        } else if (command === 'restart' && !message.member.permissions.has(Permissions.Flags.Ban_Members)) {
             message.channel.send('You do not have permission to use this command.');
-        } else if (command === 'restart' && message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+        } else if (command === 'restart' && message.member.permissions.has(Permissions.Flags.Ban_Members)) {
             message.channel.send('Restarting...');
             process.exit();
-        } else if (command === 'ruleadd' && !message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+        } else if (command === 'ruleadd' && !message.member.permissions.has(Permissions.Flags.Ban_Members)) {
             message.channel.send('You do not have permission to use this command.');
         } else if (command === 'ruleadd' && message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
             const newRule = message.content.slice(command.length + PREFIX.length + 1); // Extract the rule text
