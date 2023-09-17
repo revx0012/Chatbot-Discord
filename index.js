@@ -37,7 +37,6 @@ client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-// Add restart logic here
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
