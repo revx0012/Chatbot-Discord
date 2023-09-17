@@ -45,7 +45,7 @@ client.on('messageCreate', async (message) => {
 
     const splitMessage = message.content.toLowerCase().split(' ');
 
-    if (splitMessage[0] === PREFIX.toLowerCase()) {
+    if (splitMessage[0] === PREFIX.toLowerCase() && message.channel.id !== serverSettings[serverId]?.channelId) {
         const command = splitMessage[1];
 
         if (command === 'chatbot' && !message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
