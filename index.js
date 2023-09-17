@@ -96,7 +96,7 @@ client.on('messageCreate', async (message) => {
             // Check if the ruleToAdd is not empty
             if (ruleToAdd) {
                 // Append the new rule to rules.txt
-                fs.appendFileSync(rulesFile, `\n${ruleToAdd}`, 'utf8');
+                fs.appendFileSync(rulesFile, `\n${newRule}`, 'utf8');
                 message.channel.send('Rule added. Use the command `restart` to restart manually.');
             } else {
                 message.channel.send('Please specify a rule to add.');
