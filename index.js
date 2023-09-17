@@ -41,7 +41,6 @@ client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
     const rules = fs.readFileSync(rulesFile, 'utf8'); // Read rules from rules.txt
-
     const serverId = message.guild.id;
 
     if (serverSettings[serverId] && message.channel.id === serverSettings[serverId].channelId) {
@@ -83,13 +82,9 @@ client.on('messageCreate', async (message) => {
             } else {
                 message.channel.send('Please specify a valid channel to set up the chatbot.');
             }
-        } else if (command === 'restart' && !message.member.permissions.has(Permissions.Flags.Ban_Members)) {
-            message.channel.send('You do not have permission to use this command.');
-        } else if (command === 'restart' && message.member.permissions.has(Permissions.Flags.Ban_Members)) {
+        } else if (command === 'restart' && message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
             message.channel.send('Restarting...');
             process.exit();
-        } else if (command === 'ruleadd' && !message.member.permissions.has(Permissions.Flags.Ban_Members)) {
-            message.channel.send('You do not have permission to use this command.');
         } else if (command === 'ruleadd' && message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
             const newRule = message.content.slice(command.length + PREFIX.length + 1); // Extract the rule text
 
@@ -102,13 +97,8 @@ client.on('messageCreate', async (message) => {
                 message.channel.send('Please specify a rule to add.');
             }
         }
-    } else if (serverSettings[serverId] && message.channel.id === serverSettings[serverId].channelId) {
-        // The bot will only respond in the specified channel
-        const bot = await createBot(rules);
-        message.channel.sendTyping();
-        const response = await bot.send(message.content);
-        message.channel.send(`[BOT]: ${response}`);
     }
 });
+
 
 client.login(TOKEN);
