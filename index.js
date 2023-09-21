@@ -16,6 +16,7 @@ const TOKEN = process.env['TOKEN'];
 const PREFIX = '<@1141993367169941504>';
 
 // Initialize an empty object to hold loaded commands
+const serverSettings = loadServerSettings();
 const commands = new Map();
 
 // Function to load commands from the "commands" folder
