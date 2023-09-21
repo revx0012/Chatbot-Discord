@@ -15,23 +15,47 @@ const client = new Client({
 const TOKEN = process.env['TOKEN'];
 const PREFIX = '<@1141993367169941504>';
 
-// Initialize an empty object to hold loaded commands
 const serverSettings = loadServerSettings();
-const commands = new Map();
 
-// Function to load commands from the "commands" folder
-function loadCommands() {
-    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-    for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
-        commands.set(command.name, command);
+function loadServerSettings() {
+    try {
+        const data = fs.readFileSync('channels.json', 'utf8');
+        return JSON.parse(data) || {};
+    } catch (error) {
+        console.error('Error loading server settings:', error);
+        return {};
     }
+}
+
+client.commands = new Map();
+
+// Load commands from the 'commands' folder
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.name, command);
 }
 
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    loadCommands(); // Load commands when the bot is ready
-});
+    loadCommands(); 
+
+async function createBot(rules) {
+    if (!botInstance) {
+        botInstance = new GradioChatBot({
+            url: 'https://huggingface.co/spaces/mosaicml/mpt-30b-chat'
+        });
+        console.log("Setting system prompt..");
+        await botInstance.chat(`Hello! You are a chatbot named "Chatbot". ${rules}`);
+    }
+
+    return {
+        send: async (prompt) => {
+            const response = await botInstance.chat(prompt);
+            return response;
+        }
+    };
+}
 
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
@@ -41,22 +65,33 @@ client.on('messageCreate', async (message) => {
 
     if (splitMessage[0] === PREFIX.toLowerCase()) {
         const commandName = splitMessage[1];
-        const command = commands.get(commandName);
+        const args = splitMessage.slice(2);
 
-        if (!command) return; // If the command is not found, do nothing
+        if (client.commands.has(commandName)) {
+            const command = client.commands.get(commandName);
 
-        // Check if the user has the required permissions to execute the command
-        if (command.permissions && !message.member.permissions.has(command.permissions)) {
-            message.channel.send('You do not have permission to use this command.');
-            return;
+	    if (!command) return;
+
+            // Check if the user has the required permissions to execute the command
+            if (command.permissions && !message.member.permissions.has(command.permissions)) {
+                message.reply('You do not have permission to use this command.');
+                return;
+            }
+
+            // Execute the command
+            try {
+                command.execute(message, args);
+            } catch (error) {
+                console.error(error);
+                message.reply('An error occurred while executing the command.');
+            }
         }
-
-        try {
-            command.execute(message);
-        } catch (error) {
-            console.error(error);
-            message.channel.send('An error occurred while executing the command.');
-        }
+    } else if (serverSettings[serverId] && message.channel.id === serverSettings[serverId].channelId) {
+        // The bot will respond only in the specified channel
+        const bot = await createBot(serverSettings[serverId].rules);
+        message.channel.sendTyping();
+        const response = await bot.send(message.content);
+        message.reply(`[BOT]: ${response}`);
     }
 });
 
