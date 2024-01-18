@@ -1,3 +1,16 @@
+# Archived
+
+Im truly sorry, the api used for this is now gone.
+
+When i find a new api that works, i will update it and unarchive this
+
+For now, since the discord version is broken... 
+
+i have decided to stop working on it. (The discord version)
+
+Im truly sorry that this stopped working....
+
+
 ## Chatbot Discord
 
 Yes, You heard that right.
