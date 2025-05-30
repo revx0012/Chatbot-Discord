@@ -50,7 +50,7 @@ bot.on('messageCreate', async (message) => {
       const result = await gradioClient.predict('/chat', {
         message: content,
         system_message: systemPrompt,
-        max_tokens: 100,
+        max_tokens: 500,
         temperature: 0.7,
         top_p: 0.9,
       });
