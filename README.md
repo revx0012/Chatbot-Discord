@@ -45,15 +45,23 @@ apt-get install nano -y
 
 ### Step 4: Configure the bot
 
-Open the main script to set the prefix and token:
+Configure your bot by editing the `config.json` file inside the `discord` folder.
 
-```bash
-cd discord
-nano index.js
+### Example:
+
+```json
+{
+  "token": "YOUR_DISCORD_BOT_TOKEN",
+  "owner_id": "YOUR_DISCORD_USER_ID",
+  "space": "userlollolol1/smallai"
+}
 ```
 
-* Replace the prefix (you may see `<@ID>`, which is my bot’s ID).
-* Create your own bot via the [Discord Developer Portal](https://discord.com/developers/applications) and replace the bot ID and token accordingly.
+| Field      | Description                                                                                |
+| ---------- | ------------------------------------------------------------------------------------------ |
+| `token`    | Your Discord bot token (from the Discord Developer Portal)                                 |
+| `owner_id` | Your Discord user ID (used to restrict owner-only commands like `!restart` and `!ruleadd`) |
+| `space`    | The Hugging Face or Gradio space identifier to connect to the AI model (no API key needed) |
 
 ---
 
