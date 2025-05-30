@@ -86,6 +86,8 @@ bot.on('messageCreate', async (message) => {
   if (!content.startsWith(prefix)) {
     if (!isDM && !allowedChannels[message.channel.id]) return;
 
+    await message.channel.sendTyping();
+
     try {
       const result = await gradioClient.predict('/chat', {
         message: content,
