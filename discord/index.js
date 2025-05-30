@@ -1,9 +1,22 @@
-// index.js
 const { Client, GatewayIntentBits } = require('discord.js');
-const { Client: GradioClient } = require('@gradio/client');
 const fs = require('fs');
 const path = require('path');
 const config = require('./config.json');
+
+let GradioClient; // Will hold the imported Gradio Client class
+let gradioClient; // The connected Gradio client instance
+
+// Dynamically import the @gradio/client ES module
+async function loadGradioClient() {
+  try {
+    const mod = await import('@gradio/client');
+    GradioClient = mod.Client;
+    console.log('Gradio client module loaded.');
+  } catch (err) {
+    console.error('Failed to load Gradio client module:', err);
+    process.exit(1);
+  }
+}
 
 const bot = new Client({
   intents: [
@@ -14,26 +27,54 @@ const bot = new Client({
 });
 
 const prefix = '!';
-const ownerId = config.owner_id; // Your Discord user ID
-const systemPrompt = config.system_prompt;
-
-let gradioClient;
-let allowedChannels = {};
+const ownerId = config.owner_id;
+const systemPromptFile = 'rules.txt';
 const channelsFile = path.join(__dirname, 'channels.json');
 
+let allowedChannels = {};
 if (fs.existsSync(channelsFile)) {
   allowedChannels = JSON.parse(fs.readFileSync(channelsFile, 'utf-8'));
 }
 
-async function initGradio() {
-  console.log('Connecting to Gradio...');
-  gradioClient = await GradioClient.connect(config.space);
-  console.log('Connected.');
+function splitMessage(text, maxLength = 2000) {
+  const parts = [];
+  let remaining = text;
+  while (remaining.length > maxLength) {
+    let splitIndex = remaining.lastIndexOf('\n', maxLength);
+    if (splitIndex === -1) splitIndex = remaining.lastIndexOf(' ', maxLength);
+    if (splitIndex === -1) splitIndex = maxLength;
+
+    parts.push(remaining.slice(0, splitIndex));
+    remaining = remaining.slice(splitIndex).trimStart();
+  }
+  parts.push(remaining);
+  return parts;
 }
 
-bot.once('ready', () => {
+async function initGradio() {
+  if (!GradioClient) {
+    await loadGradioClient();
+  }
+
+  let systemPrompt = '';
+  try {
+    systemPrompt = fs.readFileSync(systemPromptFile, 'utf-8').replace(/[\r\n]+/g, ' ').trim();
+  } catch (err) {
+    console.error(`Error reading ${systemPromptFile}:`, err);
+  }
+
+  console.log('Connecting to Gradio...');
+  gradioClient = await GradioClient.connect(config.space);
+  console.log('Connected to Gradio.');
+
+  return systemPrompt;
+}
+
+let systemPrompt = '';
+
+bot.once('ready', async () => {
   console.log(`Logged in as ${bot.user.tag}`);
-  initGradio().catch(console.error);
+  systemPrompt = await initGradio();
 });
 
 bot.on('messageCreate', async (message) => {
@@ -45,18 +86,22 @@ bot.on('messageCreate', async (message) => {
   if (!content.startsWith(prefix)) {
     if (!isDM && !allowedChannels[message.channel.id]) return;
 
-    // Regular chat message
     try {
       const result = await gradioClient.predict('/chat', {
         message: content,
         system_message: systemPrompt,
-        max_tokens: 500,
+        max_tokens: 4096,
         temperature: 0.7,
         top_p: 0.9,
       });
 
       const response = result.data?.[0] || 'No response';
-      message.reply(response);
+
+      const messages = splitMessage(response);
+      for (const msgPart of messages) {
+        await message.channel.sendTyping();
+        await message.reply(msgPart);
+      }
     } catch (err) {
       console.error('Gradio error:', err);
       message.reply('Error talking to AI.');
@@ -65,7 +110,6 @@ bot.on('messageCreate', async (message) => {
     return;
   }
 
-  // Commands
   const args = content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
