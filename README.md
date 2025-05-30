@@ -15,7 +15,7 @@ That’s the whole point! Yes, it can.
 
 ---
 
-## Getting Started (Linux)
+## Getting Started
 
 ### Step 1: Clone the repository
 
@@ -171,6 +171,9 @@ Use the chatbot directly from your terminal without a Discord bot token or ID:
 ```bash
 node cli.js
 ```
+
+>Hey! the CLI verison is now on windows. Check it out on the [releases](https://github.com/revx0012/Chatbot-Discord/releases) tab.
+
 
 ---
 
