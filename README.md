@@ -131,27 +131,6 @@ Logged in as YourBotName#1234
 
 ---
 
-## Commands Explained
-
-* **chatbot**
-  Set the bot's active channel to keep conversations organized.
-  Example:
-
-  ```
-  @YourBot chatbot #chatbot-channel
-  ```
-
-* **restart**
-  Restart the bot process.
-
-* **ruleadd**
-  Dynamically add a new rule to the bot's behavior.
-  Example:
-
-  ```
-  @YourBot ruleadd "Always greet politely."
-  ```
-
 ---
 
 ## Automatic Installation Script
