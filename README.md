@@ -191,7 +191,7 @@ Once complete, access it locally at:
 
 * **[05\_4](https://github.com/05-4)** — Provided the AI CLI code integrated into this project (part of Vadrifts Discord community).
 * **[revx0012](https://github.com/revx0012)** — Project creator and maintainer.
-* **[MPT-30B-CHAT](https://huggingface.co/spaces/mosaicml/mpt-30b-chat)** — AI API powering the chatbot.
+* **[Zephyr 7B Beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)** — AI API powering the chatbot.
 * Licensed under the **MIT License** — see [MIT License](https://opensource.org/license/mit/).
 
 --- 
