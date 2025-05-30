@@ -43,7 +43,7 @@ import { Client } from "@gradio/client";
         const result = await client.predict("/chat", {
           message: prompt,
           system_message: systemPrompt,
-          max_tokens: 100,
+          max_tokens: 4096,
           temperature: 0.1,
           top_p: 0.1,
         });
