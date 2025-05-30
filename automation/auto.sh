@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Check if the package manager is apt
 if [ "$(dpkg -s apt 2>/dev/null | grep Status)" != "Status: install ok installed" ]; then
     echo -e "\033[0;31mYour package manager is not supported.\033[0m"
@@ -51,8 +53,15 @@ fi
 clear
 
 cd Chatbot-Discord
+cd discord
 
-echo "Hey, You should be now done here, Congratulations!"
-echo "Now make sure you are in the Chat-Bot-Discord Directory and now the last step is to do the below command to get the web started:"
-echo "cd web && node server.js"
-echo "You can do 'cd web/public && nano client.js' to do some configuration like rules"
+read -p "Your bot token: " bot_token
+sed -i "s/const TOKEN = process.env\['TOKEN'\];/const TOKEN = '$bot_token';/" index.js
+
+read -p "Your bot ID: " bot_id
+sed -i "s/const PREFIX = '<@1141993367169941504>';/const PREFIX = '<@$bot_id>';/" index.js
+
+echo "Hey there! You have completed it here!!! Use 'cd Chatbot-Discord && node index.js' to begin your bot."
+
+rm -rf auto.sh
+

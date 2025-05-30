@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta property="og:title" content="ChatBot AI">
-  <meta property="og:description" content="A chatbot in web that you can chat with.">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatBot AI</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ChatBot AI</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <h1>ChatBot AI</h1>
-    <div id="chat-container">
-        <div id="chat-box"></div>
-        <input type="text" id="user-input" placeholder="Type your message..." autocomplete=off>
-        <button id="send-button">Send</button>
-	<button id="clear-button">Clear Chat</button>
-    </div>
+  <div class="container">
+    <header>
+      <h1>ChatBot AI</h1>
+      <button id="toggle-mode">🌙 Dark Mode</button>
+    </header>
 
-    <script src="client.js"></script>
+    <main id="chat-container">
+      <div id="chat-box" role="log" aria-live="polite" aria-relevant="additions"></div>
+      <div id="input-area">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message..."
+          autocomplete="off"
+          aria-label="Message input"
+        />
+        <button id="send-button" aria-label="Send message">Send</button>
+        <button id="clear-button" aria-label="Clear chat">Clear</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="client.js"></script>
 </body>
 </html>

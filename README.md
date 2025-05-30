@@ -48,6 +48,7 @@ apt-get install nano -y
 Open the main script to set the prefix and token:
 
 ```bash
+cd discord
 nano index.js
 ```
 
@@ -88,6 +89,7 @@ npm i npm@8.19.2
 Start the bot with:
 
 ```bash
+cd discord
 node index.js
 ```
 
@@ -157,7 +159,7 @@ Logged in as YourBotName#1234
 If you prefer automation, run:
 
 ```bash
-cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/auto.sh && bash auto.sh
+cd && wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/automation/auto.sh && bash auto.sh
 ```
 
 Follow the on-screen prompts to complete setup.
@@ -169,6 +171,7 @@ Follow the on-screen prompts to complete setup.
 Use the chatbot directly from your terminal without a Discord bot token or ID:
 
 ```bash
+cd cli
 node cli.js
 ```
 
@@ -182,7 +185,7 @@ node cli.js
 To run a web-based chatbot, execute:
 
 ```bash
-wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/autoweb.sh && bash autoweb.sh
+wget https://raw.githubusercontent.com/revx0012/Chatbot-Discord/main/automation/autoweb.sh && bash autoweb.sh
 ```
 
 Once complete, access it locally at:
