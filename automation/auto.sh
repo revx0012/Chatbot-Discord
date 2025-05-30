@@ -56,10 +56,10 @@ cd Chatbot-Discord
 cd discord
 
 read -p "Your bot token: " bot_token
-sed -i "s/const TOKEN = process.env\['TOKEN'\];/const TOKEN = '$bot_token';/" index.js
+sed -i "s/\"token\": *\"[^\"]*\"/\"token\": \"$bot_token\"/" config.json
 
-read -p "Your bot ID: " bot_id
-sed -i "s/const PREFIX = '<@1141993367169941504>';/const PREFIX = '<@$bot_id>';/" index.js
+read -p "Your discord account ID: " owner_id
+sed -i "s/\"owner_id\": *\"[^\"]*\"/\"owner_id\": \"$owner_id\"/" config.json
 
 echo "Hey there! You have completed it here!!! Use 'cd Chatbot-Discord && node index.js' to begin your bot."
 
