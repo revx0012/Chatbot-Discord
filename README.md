@@ -135,7 +135,7 @@ Logged in as YourBotName#1234
 | --------- | ------------------------------------------------------------------------------------ |
 | `chatbot` | Designate a channel where the bot will respond. Example: `!chatbot`                  |
 | `restart` | Restart the bot to refresh functionality.                                            |
-| `ruleadd` | Add a new behavioral rule. Usage: `@YourBot ruleadd "Your new rule here"`            |
+| `ruleadd` | Add a new behavioral rule. Usage: `!ruleadd Your new rule here`            |
 
 ---
 
