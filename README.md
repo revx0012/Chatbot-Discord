@@ -3,7 +3,7 @@
 
 Yes, you heard that right — no payment, no credit card needed, and you don’t have to pay a single dime!
 
-> **Note:** The Discord version could have bugs, but if you find any please contact me via [Email](mailto:admin@ron144.pro).
+> **Note:** The Discord version could have bugs, but if you find any please contact me via [Email](mailto:ron@ron144.pro).
 
 > **Disclaimer:** I am not responsible for any damages or risks that may arise from using this bot.
 
