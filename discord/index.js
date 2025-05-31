@@ -99,11 +99,16 @@ bot.on('messageCreate', async (message) => {
 
       const response = result.data?.[0] || 'No response';
 
-      const messages = splitMessage(response);
-      for (const msgPart of messages) {
-        await message.channel.sendTyping();
-        await message.reply(msgPart);
-      }
+for (const msgPart of messages) {
+  try {
+    await message.channel.sendTyping();
+    await message.reply(msgPart);
+  } catch (err) {
+    console.warn(`Message was likely deleted before reply: ${err.message}`);
+    break; // Stop trying to send more replies
+  }
+}
+
     } catch (err) {
       console.error('Gradio error:', err);
       message.reply('Error talking to AI.');
